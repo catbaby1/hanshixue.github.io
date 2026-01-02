@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元器件出入库管理系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .header {
+            background: linear-gradient(120deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 20px 30px;
+            margin-bottom: 25px;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+        .card-header {
+            background: linear-gradient(120deg, #4a6fa5, #5e9cec);
+            color: white;
+            font-weight: 600;
+            padding: 15px 20px;
+            border-bottom: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(120deg, var(--primary-color), #1a6ca8);
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-weight: 500;
+        }
+        
+        .btn-success {
+            background: linear-gradient(120deg, var(--success-color), #27ae60);
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-weight: 500;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(120deg, var(--danger-color), #c0392b);
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-weight: 500;
+        }
+        
+        .btn-warning {
+            background: linear-gradient(120deg, var(--warning-color), #e67e22);
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-weight: 500;
+        }
+        
+        .form-control, .form-select {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 10px 15px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            color: #7b8a8b;
+        }
+        
+        .search-container input {
+            padding-left: 40px;
+        }
+        
+        .component-item {
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin-bottom: 12px;
+            background-color: white;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .component-item:hover {
+            background-color: #f0f8ff;
+            transform: translateX(5px);
+        }
+        
+        .count-badge {
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        
+        .stats-card {
+            background: linear-gradient(120deg, #6a89cc, #4a69bd);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .action-buttons .btn {
+            padding: 5px 10px;
+            margin-left: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .category-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .category-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .category-item:hover, .category-item.active {
+            background-color: #e3f2fd;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .category-actions {
+            display: none;
+        }
+        
+        .category-item:hover .category-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .component-list {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #7f8c8d;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            color: #bdc3c7;
+        }
+        
+        .modal-content {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .stock-status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        .status-normal { background-color: #2ecc71; }
+        .status-warning { background-color: #f39c12; }
+        .status-danger { background-color: #e74c3c; }
+        
+        /* 新增编辑类别样式 */
+        .category-edit-input {
+            border: none;
+            background: transparent;
+            border-bottom: 1px solid #3498db;
+            padding: 2px 5px;
+            width: 70%;
+            outline: none;
+        }
+        
+        .category-name-display {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- 头部 -->
+        <div class="header text-center mb-4">
+            <h1><i class="fas fa-microchip me-3"></i>元器件出入库管理系统</h1>
+            <p class="lead mb-0">高效管理您的电子元器件库存</p>
+        </div>
+        
+        <div class="row">
+            <!-- 左侧面板 -->
+            <div class="col-lg-4">
+                <!-- 统计卡片 -->
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="stats-card text-center">
+                            <h5><i class="fas fa-boxes me-2"></i>元器件类别</h5>
+                            <div class="stats-number" id="categoryCount">0</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="stats-card text-center">
+                            <h5><i class="fas fa-microchip me-2"></i>型号总数</h5>
+                            <div class="stats-number" id="modelCount">0</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 类别管理 -->
+                <div class="card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-folder me-2"></i>元器件类别管理</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">添加新类别</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="newCategory" placeholder="如：电源芯片、电阻、电容...">
+                                <button class="btn btn-primary" id="addCategoryBtn"><i class="fas fa-plus me-1"></i>添加</button>
+                            </div>
+                        </div>
+                        
+                        <h6 class="mt-4 mb-3"><i class="fas fa-list me-2"></i>现有类别</h6>
+                        <div class="category-list" id="categoryList">
+                            <!-- 类别列表将在这里动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 右侧面板 -->
+            <div class="col-lg-8">
+                <!-- 搜索栏 -->
+                <div class="card mb-4">
+                    <div class="card-body p-3">
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" class="form-control" placeholder="搜索元器件型号...">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 型号管理 -->
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span id="currentCategoryTitle"><i class="fas fa-microchip me-2"></i>请选择一个类别</span>
+                        <button class="btn btn-success" id="addModelBtn" disabled>
+                            <i class="fas fa-plus me-1"></i>添加型号
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="component-list" id="componentList">
+                            <div class="empty-state">
+                                <i class="fas fa-box-open"></i>
+                                <h5>暂无元器件型号</h5>
+                                <p>请先选择左侧类别或添加新类别</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加型号模态框 -->
+    <div class="modal fade" id="addModelModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fas fa-plus-circle me-2"></i>添加新元器件型号</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addModelForm">
+                        <div class="mb-3">
+                            <label class="form-label">型号名称 *</label>
+                            <input type="text" class="form-control" id="modelName" placeholder="如：LM7805、ATmega328P...">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">描述</label>
+                            <textarea class="form-control" id="modelDesc" rows="2" placeholder="型号描述..."></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">初始库存数量 *</label>
+                                <input type="number" class="form-control" id="modelQuantity" value="10" min="0">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">库存预警值</label>
+                                <input type="number" class="form-control" id="modelThreshold" value="5" min="0">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="submitModelBtn">添加型号</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 入库/出库模态框 -->
+    <div class="modal fade" id="inventoryModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inventoryModalTitle"><i class="fas fa-arrow-up me-2"></i>元器件出库</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>型号: <strong id="currentModelName">-</strong></p>
+                    <p>当前库存: <span class="badge bg-primary" id="currentModelStock">-</span></p>
+                    <div class="mb-3">
+                        <label class="form-label">数量 *</label>
+                        <input type="number" class="form-control" id="inventoryQuantity" min="1" value="1">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">备注</label>
+                        <textarea class="form-control" id="inventoryNote" rows="2" placeholder="操作备注..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="confirmInventoryBtn">确认操作</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 数据存储
+        let categories = [];
+        let currentCategoryIndex = -1;
+        let currentModelIndex = -1;
+        let currentAction = ''; // 'in' 或 'out'
+        let editingCategoryIndex = -1; // 正在编辑的类别索引
+        
+        // 从本地存储加载数据
+        function loadData() {
+            const data = localStorage.getItem('componentManagementData');
+            if (data) {
+                categories = JSON.parse(data);
+            }
+        }
+        
+        // 保存数据到本地存储
+        function saveData() {
+            localStorage.setItem('componentManagementData', JSON.stringify(categories));
+        }
+        
+        // DOM加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 从本地存储加载数据
+            loadData();
+            
+            // 添加类别事件
+            document.getElementById('addCategoryBtn').addEventListener('click', addCategory);
+            
+            // 添加型号按钮事件
+            document.getElementById('addModelBtn').addEventListener('click', function() {
+                if (currentCategoryIndex === -1) return;
+                new bootstrap.Modal(document.getElementById('addModelModal')).show();
+            });
+            
+            // 提交型号表单
+            document.getElementById('submitModelBtn').addEventListener('click', addModel);
+            
+            // 确认出入库操作
+            document.getElementById('confirmInventoryBtn').addEventListener('click', processInventory);
+            
+            // 搜索功能
+            document.getElementById('searchInput').addEventListener('input', searchModels);
+            
+            // 更新UI
+            updateCategoryList();
+            updateStats();
+            
+            // 初始化演示数据
+            if (categories.length === 0) {
+                initializeDemoData();
+            }
+        });
+        
+        // 页面关闭时保存数据
+        window.addEventListener('beforeunload', saveData);
+        
+        // 初始化演示数据
+        function initializeDemoData() {
+            // 添加一些演示类别
+            addCategory("电源芯片");
+            addCategory("微控制器");
+            addCategory("电阻");
+            
+            // 添加一些演示型号
+            if (categories.length > 0) {
+                // 选择第一个类别
+                selectCategory(0);
+                
+                // 添加型号到第一个类别
+                addModelToCategory(0, "LM7805", "5V 1A 线性稳压器", 42, 5);
+                addModelToCategory(0, "LM317", "可调电压稳压器", 28, 5);
+                addModelToCategory(0, "TPS5430", "3A 降压转换器", 8, 5);
+                addModelToCategory(0, "LM2596", "3A 降压稳压器", 3, 5);
+                addModelToCategory(0, "LM1117", "800mA LDO稳压器", 56, 5);
+                
+                // 添加型号到第二个类别
+                addModelToCategory(1, "ATmega328P", "8位AVR微控制器", 25, 5);
+                addModelToCategory(1, "STM32F103", "ARM Cortex-M3 MCU", 18, 5);
+                addModelToCategory(1, "ESP32", "双核WiFi蓝牙MCU", 32, 5);
+                
+                // 添加型号到第三个类别
+                addModelToCategory(2, "1kΩ 电阻", "1/4W 碳膜电阻", 500, 100);
+                addModelToCategory(2, "10kΩ 电阻", "1/4W 碳膜电阻", 300, 100);
+            }
+        }
+        
+        // 添加类别
+        function addCategory(name) {
+            let categoryName = name;
+            
+            if (!name) {
+                categoryName = document.getElementById('newCategory').value.trim();
+                if (!categoryName) {
+                    alert('请输入类别名称');
+                    return;
+                }
+                
+                // 清空输入框
+                document.getElementById('newCategory').value = '';
+            }
+            
+            // 检查是否已存在同名类别
+            if (categories.some(cat => cat.name === categoryName)) {
+                alert('该类别已存在');
+                return;
+            }
+            
+            // 创建新类别
+            categories.push({
+                name: categoryName,
+                models: []
+            });
+            
+            // 更新UI
+            updateCategoryList();
+            updateStats();
+            saveData();
+            
+            // 如果是新添加的类别，选中它
+            if (!name) {
+                selectCategory(categories.length - 1);
+            }
+        }
+        
+        // 编辑类别名称
+        function editCategory(index) {
+            // 如果已经有正在编辑的类别，先保存
+            if (editingCategoryIndex !== -1 && editingCategoryIndex !== index) {
+                saveCategoryEdit(editingCategoryIndex);
+            }
+            
+            editingCategoryIndex = index;
+            
+            const categoryItem = document.querySelectorAll('.category-item')[index];
+            const categoryName = categories[index].name;
+            
+            categoryItem.innerHTML = `
+                <div class="d-flex align-items-center" style="width: 100%;">
+                    <input type="text" class="category-edit-input" value="${categoryName}" 
+                        onkeydown="handleCategoryEditKeydown(event, ${index})">
+                    <div class="category-actions ms-auto">
+                        <button class="btn btn-sm btn-success" onclick="saveCategoryEdit(${index})">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="btn btn-sm btn-secondary" onclick="cancelCategoryEdit(${index})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // 自动聚焦输入框
+            categoryItem.querySelector('.category-edit-input').focus();
+        }
+        
+        // 处理类别编辑时的键盘事件
+        function handleCategoryEditKeydown(event, index) {
+            if (event.key === 'Enter') {
+                saveCategoryEdit(index);
+            } else if (event.key === 'Escape') {
+                cancelCategoryEdit(index);
+            }
+        }
+        
+        // 保存类别编辑
+        function saveCategoryEdit(index) {
+            const input = document.querySelectorAll('.category-edit-input')[0];
+            const newName = input.value.trim();
+            
+            if (!newName) {
+                alert('类别名称不能为空');
+                return;
+            }
+            
+            // 检查是否已存在同名类别
+            if (categories.some((cat, i) => i !== index && cat.name === newName)) {
+                alert('该类别已存在');
+                return;
+            }
+            
+            categories[index].name = newName;
+            editingCategoryIndex = -1;
+            updateCategoryList();
+            saveData();
+            
+            // 如果编辑的是当前选中的类别，更新标题
+            if (currentCategoryIndex === index) {
+                document.getElementById('currentCategoryTitle').innerHTML = 
+                    `<i class="fas fa-microchip me-2"></i>${newName} - 型号管理`;
+            }
+        }
+        
+        // 取消类别编辑
+        function cancelCategoryEdit(index) {
+            editingCategoryIndex = -1;
+            updateCategoryList();
+        }
+        
+        // 删除类别
+        function deleteCategory(index) {
+            if (confirm(`确定要删除类别 "${categories[index].name}" 及其所有型号吗？`)) {
+                categories.splice(index, 1);
+                
+                // 更新UI
+                updateCategoryList();
+                updateStats();
+                saveData();
+                
+                // 如果删除了当前选中的类别
+                if (currentCategoryIndex === index) {
+                    currentCategoryIndex = -1;
+                    document.getElementById('currentCategoryTitle').innerHTML = '<i class="fas fa-microchip me-2"></i>请选择一个类别';
+                    document.getElementById('addModelBtn').disabled = true;
+                    document.getElementById('componentList').innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-box-open"></i>
+                            <h5>暂无元器件型号</h5>
+                            <p>请先选择左侧类别或添加新类别</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+        
+        // 删除型号
+        function deleteModel(categoryIndex, modelIndex) {
+            if (confirm(`确定要删除型号 "${categories[categoryIndex].models[modelIndex].name}" 吗？`)) {
+                categories[categoryIndex].models.splice(modelIndex, 1);
+                updateModelList();
+                updateStats();
+                saveData();
+            }
+        }
+        
+        // 选择类别
+        function selectCategory(index) {
+            // 如果有正在编辑的类别，先保存
+            if (editingCategoryIndex !== -1) {
+                saveCategoryEdit(editingCategoryIndex);
+            }
+            
+            currentCategoryIndex = index;
+            updateModelList();
+            document.getElementById('currentCategoryTitle').innerHTML = 
+                `<i class="fas fa-microchip me-2"></i>${categories[index].name} - 型号管理`;
+            document.getElementById('addModelBtn').disabled = false;
+            
+            // 高亮选中的类别
+            document.querySelectorAll('.category-item').forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+        
+        // 添加型号
+        function addModel() {
+            const modelName = document.getElementById('modelName').value.trim();
+            const modelDesc = document.getElementById('modelDesc').value.trim();
+            const modelQuantity = parseInt(document.getElementById('modelQuantity').value);
+            const modelThreshold = parseInt(document.getElementById('modelThreshold').value);
+            
+            if (!modelName) {
+                alert('请输入型号名称');
+                return;
+            }
+            
+            if (isNaN(modelQuantity) || modelQuantity < 0) {
+                alert('库存数量必须是非负整数');
+                return;
+            }
+            
+            // 添加到当前类别的型号列表
+            categories[currentCategoryIndex].models.push({
+                name: modelName,
+                desc: modelDesc,
+                quantity: modelQuantity,
+                threshold: modelThreshold || 5
+            });
+            
+            // 关闭模态框
+            bootstrap.Modal.getInstance(document.getElementById('addModelModal')).hide();
+            
+            // 重置表单
+            document.getElementById('addModelForm').reset();
+            
+            // 更新UI
+            updateModelList();
+            updateStats();
+            saveData();
+        }
+        
+        // 添加型号到指定类别（演示用）
+        function addModelToCategory(categoryIndex, name, desc, quantity, threshold) {
+            categories[categoryIndex].models.push({
+                name: name,
+                desc: desc,
+                quantity: quantity,
+                threshold: threshold
+            });
+            
+            // 如果当前选中的是这个类别，更新UI
+            if (currentCategoryIndex === categoryIndex) {
+                updateModelList();
+                updateStats();
+            }
+        }
+        
+        // 打开出入库模态框
+        function openInventoryModal(modelIndex, action) {
+            currentModelIndex = modelIndex;
+            currentAction = action;
+            
+            const model = categories[currentCategoryIndex].models[modelIndex];
+            
+            document.getElementById('currentModelName').textContent = model.name;
+            document.getElementById('currentModelStock').textContent = model.quantity;
+            
+            if (action === 'in') {
+                document.getElementById('inventoryModalTitle').innerHTML = '<i class="fas fa-arrow-down me-2"></i>元器件入库';
+            } else {
+                document.getElementById('inventoryModalTitle').innerHTML = '<i class="fas fa-arrow-up me-2"></i>元器件出库';
+            }
+            
+            // 重置表单
+            document.getElementById('inventoryQuantity').value = 1;
+            document.getElementById('inventoryNote').value = '';
+            
+            // 显示模态框
+            new bootstrap.Modal(document.getElementById('inventoryModal')).show();
+        }
+        
+        // 处理出入库操作
+        function processInventory() {
+            const quantity = parseInt(document.getElementById('inventoryQuantity').value);
+            const note = document.getElementById('inventoryNote').value;
+            
+            if (isNaN(quantity) || quantity <= 0) {
+                alert('请输入有效的数量');
+                return;
+            }
+            
+            const model = categories[currentCategoryIndex].models[currentModelIndex];
+            
+            if (currentAction === 'out') {
+                // 出库
+                if (quantity > model.quantity) {
+                    alert('出库数量不能超过当前库存');
+                    return;
+                }
+                model.quantity -= quantity;
+            } else {
+                // 入库
+                model.quantity += quantity;
+            }
+            
+            // 关闭模态框
+            bootstrap.Modal.getInstance(document.getElementById('inventoryModal')).hide();
+            
+            // 更新UI
+            updateModelList();
+            saveData();
+            
+            // 显示操作结果
+            const action = currentAction === 'in' ? '入库' : '出库';
+            alert(`${model.name} ${action} ${quantity}个成功！`);
+        }
+        
+        // 搜索型号
+        function searchModels() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const models = categories[currentCategoryIndex].models;
+            
+            if (!searchTerm) {
+                updateModelList();
+                return;
+            }
+            
+            const filteredModels = models.filter(model => 
+                model.name.toLowerCase().includes(searchTerm) || 
+                (model.desc && model.desc.toLowerCase().includes(searchTerm))
+            );
+            
+            renderModelList(filteredModels);
+        }
+        
+        // 更新类别列表
+        function updateCategoryList() {
+            const container = document.getElementById('categoryList');
+            container.innerHTML = '';
+            
+            if (categories.length === 0) {
+                container.innerHTML = '<div class="text-center py-3 text-muted">暂无类别</div>';
+                return;
+            }
+            
+            categories.forEach((category, index) => {
+                const item = document.createElement('div');
+                item.className = 'category-item' + (index === currentCategoryIndex ? ' active' : '');
+                
+                if (index === editingCategoryIndex) {
+                    // 编辑模式
+                    item.innerHTML = `
+                        <div class="d-flex align-items-center" style="width: 100%;">
+                            <input type="text" class="category-edit-input" value="${category.name}" 
+                                onkeydown="handleCategoryEditKeydown(event, ${index})">
+                            <div class="category-actions ms-auto">
+                                <button class="btn btn-sm btn-success" onclick="saveCategoryEdit(${index})">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                                <button class="btn btn-sm btn-secondary" onclick="cancelCategoryEdit(${index})">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    item.querySelector('.category-edit-input').focus();
+                } else {
+                    // 显示模式
+                    item.innerHTML = `
+                        <div class="category-name-display" onclick="selectCategory(${index})">
+                            ${category.name} (${category.models.length})
+                        </div>
+                        <div class="category-actions">
+                            <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); editCategory(${index})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="event.stopPropagation(); deleteCategory(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                }
+                
+                container.appendChild(item);
+            });
+        }
+        
+        // 更新型号列表
+        function updateModelList() {
+            if (currentCategoryIndex === -1) return;
+            
+            const models = categories[currentCategoryIndex].models;
+            renderModelList(models);
+        }
+        
+        // 渲染型号列表
+        function renderModelList(models) {
+            const container = document.getElementById('componentList');
+            
+            if (models.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-box-open"></i>
+                        <h5>暂无元器件型号</h5>
+                        <p>点击"添加型号"按钮添加新型号</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            models.forEach((model, index) => {
+                // 确定库存状态
+                let statusClass = 'status-normal';
+                let statusText = '库存充足';
+                
+                if (model.quantity < model.threshold) {
+                    statusClass = 'status-danger';
+                    statusText = '库存不足';
+                } else if (model.quantity < model.threshold * 2) {
+                    statusClass = 'status-warning';
+                    statusText = '库存预警';
+                }
+                
+                const item = document.createElement('div');
+                item.className = 'component-item d-flex justify-content-between align-items-center';
+                item.innerHTML = `
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">${model.name}</h6>
+                        <p class="mb-0 text-muted">${model.desc || '无描述信息'}</p>
+                        <div class="mt-2">
+                            <span class="badge bg-light text-dark small"><span class="${statusClass}"></span>${statusText}</span>
+                            <span class="badge bg-light text-dark small ms-2">预警值: ${model.threshold}</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="count-badge bg-primary">${model.quantity}</span>
+                        <div class="action-buttons ms-3">
+                            <button class="btn btn-sm btn-success" onclick="openInventoryModal(${index}, 'in')">
+                                <i class="fas fa-arrow-down"></i> 入库
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="openInventoryModal(${index}, 'out')">
+                                <i class="fas fa-arrow-up"></i> 出库
+                            </button>
+                            <button class="btn btn-sm btn-warning" onclick="deleteModel(${currentCategoryIndex}, ${index})">
+                                <i class="fas fa-trash"></i> 删除
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+        
+        // 更新统计信息
+        function updateStats() {
+            document.getElementById('categoryCount').textContent = categories.length;
+            
+            let totalModels = 0;
+            categories.forEach(category => {
+                totalModels += category.models.length;
+            });
+            document.getElementById('modelCount').textContent = totalModels;
+        }
+    </script>
+</body>
+</html>
