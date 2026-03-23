@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="信科电子官网：信号源、功率计、频谱仪、功率放大器等射频测试测量产品与工程解决方案。">
+    <title>信科电子官网 - 射频测试测量解决方案</title>
+    <meta property="og:title" content="信科电子官网 - 射频测试测量解决方案">
+    <meta property="og:description" content="信号源、功率计、频谱仪、功率放大器等射频测试测量产品与工程解决方案。">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- JSON-LD：给搜索引擎理解站点信息 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "信科电子官网",
+      "url": ""
+    }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+        .navbar {
+            background-color: #0056b3;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .hero {
+            background: linear-gradient(135deg, #0056b3 0%, #007bff 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+        }
+        .section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0056b3;
+        }
+        .about-us {
+            background-color: #f8f9fa;
+        }
+        .product-card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .product-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .product-card .card-body {
+            padding: 25px;
+        }
+        .product-card h5 {
+            color: #0056b3;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .contact {
+            background-color: #f8f9fa;
+        }
+        .footer {
+            background-color: #0056b3;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        /* ===== 新官网样式（由AI重写添加）===== */
+        :root{
+            --bg0:#070A12;
+            --bg1:#0B1324;
+            --card:#0E1830;
+            --card2:#0C1428;
+            --text:#E9F1FF;
+            --muted:rgba(233,241,255,.72);
+            --line:rgba(255,255,255,.10);
+            --primary:#2B6CFF;
+            --primary2:#22D3EE;
+            --ok:#22C55E;
+            --shadow2: 0 10px 30px rgba(0,0,0,.25);
+            --radius:18px;
+        }
+
+        /* 隐藏旧页面（保留原DOM但不显示） */
+        #home, #about, #products, #contact, .navbar, .footer{
+            display:none !important;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body{
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(900px 600px at 15% 5%, rgba(43,108,255,.30), transparent 55%),
+                radial-gradient(700px 500px at 85% 10%, rgba(34,211,238,.22), transparent 55%),
+                linear-gradient(180deg, var(--bg0), var(--bg1));
+            overflow-x:hidden;
+        }
+
+        .theme-light{
+            --bg0:#F6F8FF;
+            --bg1:#EEF3FF;
+            --card:#FFFFFF;
+            --card2:#F7F9FF;
+            --text:#0B1220;
+            --muted:rgba(11,18,32,.65);
+            --line:rgba(11,18,32,.10);
+            background:
+                radial-gradient(900px 600px at 15% 5%, rgba(43,108,255,.16), transparent 55%),
+                radial-gradient(700px 500px at 85% 10%, rgba(34,211,238,.14), transparent 55%),
+                linear-gradient(180deg, var(--bg0), var(--bg1));
+        }
+
+        .topbar{
+            background: rgba(255,255,255,.04);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+        }
+        .topbar .pill{
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            border-radius:999px;
+            padding:.45rem .75rem;
+            color: var(--muted);
+            font-size:.9rem;
+            white-space:nowrap;
+        }
+
+        .site-navbar{
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+            background: rgba(10,15,30,.65);
+            border-bottom: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+        }
+        .theme-light .site-navbar{
+            background: rgba(246,248,255,.78);
+        }
+
+        .brand-mark{
+            width:32px;
+            height:32px;
+            border-radius:10px;
+            background: linear-gradient(135deg, rgba(43,108,255,1), rgba(34,211,238,1));
+            box-shadow: 0 10px 30px rgba(43,108,255,.35);
+            display:grid;
+            place-items:center;
+            color:#001021;
+            font-weight:900;
+        }
+
+        .site-brand{
+            font-weight:900;
+            letter-spacing:.2px;
+            color: var(--text) !important;
+            display:flex;
+            align-items:center;
+            gap:.65rem;
+            text-decoration:none;
+        }
+
+        .site-navlink{
+            color: var(--muted);
+            font-weight:800;
+            padding: .55rem .9rem;
+            border-radius: 12px;
+            transition: all .18s ease;
+            text-decoration:none;
+        }
+        .site-navlink:hover, .site-navlink.active{
+            background: rgba(43,108,255,.12);
+            color: var(--text);
+        }
+
+        .btn-brand{
+            background: linear-gradient(135deg, var(--primary), var(--primary2));
+            border: none;
+            color: #001021;
+            font-weight:950;
+            padding: .78rem 1.15rem;
+            border-radius: 14px;
+            box-shadow: 0 16px 40px rgba(43,108,255,.25);
+        }
+        .btn-brand:hover{
+            filter: brightness(1.05);
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost{
+            border: 1px solid var(--line);
+            color: var(--text);
+            padding: .78rem 1.15rem;
+            border-radius: 14px;
+            font-weight:950;
+            background: rgba(255,255,255,.03);
+        }
+        .btn-ghost:hover{
+            background: rgba(43,108,255,.10);
+            border-color: rgba(43,108,255,.35);
+        }
+
+        .section{
+            padding: 90px 0;
+        }
+
+        .section-title{
+            font-weight: 950;
+            letter-spacing: .2px;
+            font-size: clamp(1.6rem, 1.2rem + 1.1vw, 2.35rem);
+            margin-bottom: .9rem;
+        }
+        .section-subtitle{
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 820px;
+            margin: 0 auto 46px;
+            line-height: 1.65;
+            font-weight:700;
+        }
+
+        .hero{
+            padding: 96px 0 72px;
+        }
+        .headline{
+            font-weight: 990;
+            font-size: clamp(2.1rem, 1.2rem + 2.2vw, 3.6rem);
+            line-height: 1.08;
+            margin-bottom: 18px;
+        }
+        .gradient-text{
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary2) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .lead{
+            color: var(--muted);
+            font-size: 1.14rem;
+            line-height: 1.75;
+            max-width: 720px;
+            margin-bottom: 26px;
+            font-weight:700;
+        }
+
+        .chip{
+            display:inline-flex;
+            align-items:center;
+            gap:.45rem;
+            padding:.45rem .75rem;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            color: var(--muted);
+            font-weight:900;
+            font-size:.95rem;
+            margin-right:.5rem;
+            margin-bottom:.5rem;
+            user-select:none;
+        }
+
+        .site-card{
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+            border-radius: var(--radius);
+            box-shadow: var(--shadow2);
+            overflow:hidden;
+        }
+
+        .site-slab{
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            border-radius: var(--radius);
+            padding: 22px;
+            box-shadow: var(--shadow2);
+        }
+
+        .feature-card{
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+            border-radius: var(--radius);
+            padding: 18px;
+            min-height: 148px;
+            transition: transform .18s ease, border-color .18s ease;
+        }
+        .feature-card:hover{
+            transform: translateY(-3px);
+            border-color: rgba(43,108,255,.35);
+        }
+
+        .feature-icon{
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display:grid;
+            place-items:center;
+            background: rgba(43,108,255,.14);
+            border: 1px solid rgba(43,108,255,.22);
+            color: #B8D2FF;
+            flex: 0 0 auto;
+        }
+        .theme-light .feature-icon{
+            color: #0B3AAE;
+            background: rgba(43,108,255,.10);
+        }
+
+        .form-control, .form-select{
+            background: rgba(255,255,255,.03) !important;
+            border: 1px solid var(--line) !important;
+            color: var(--text) !important;
+            border-radius: 14px !important;
+        }
+        .form-control::placeholder{ color: rgba(233,241,255,.45); }
+        .theme-light .form-control::placeholder{ color: rgba(11,18,32,.45); }
+
+        .product-toolbar{
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            border-radius: var(--radius);
+            padding: 14px;
+            display:flex;
+            gap: 12px;
+            align-items:center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .filter-tabs .btn{
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            color: var(--muted);
+            font-weight: 950;
+            border-radius: 999px;
+            padding: .55rem 1rem;
+            transition: all .18s ease;
+        }
+        .filter-tabs .btn:hover{
+            border-color: rgba(43,108,255,.35);
+            color: var(--text);
+        }
+        .filter-tabs .btn.active{
+            background: rgba(43,108,255,.16);
+            border-color: rgba(43,108,255,.50);
+            color: var(--text);
+        }
+
+        .product-card{
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+            border-radius: var(--radius);
+            overflow: hidden;
+            min-height: 330px;
+            display:flex;
+            flex-direction: column;
+            transition: transform .18s ease, border-color .18s ease;
+        }
+        .product-card:hover{
+            transform: translateY(-4px);
+            border-color: rgba(43,108,255,.45);
+        }
+
+        .product-visual{
+            height: 120px;
+            position: relative;
+            overflow:hidden;
+            background:
+                radial-gradient(500px 120px at 0% 0%, rgba(43,108,255,.40), transparent 55%),
+                radial-gradient(420px 130px at 100% 20%, rgba(34,211,238,.30), transparent 45%),
+                linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.01));
+            border-bottom: 1px solid var(--line);
+        }
+        .product-visual .grid{
+            position:absolute;
+            inset:0;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,.07) 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity:.18;
+        }
+        .product-visual .glyph{
+            position:absolute;
+            right: 18px;
+            top: 18px;
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,.14);
+            background: rgba(255,255,255,.04);
+            display:grid;
+            place-items:center;
+            color: #B8D2FF;
+        }
+
+        .product-body{
+            padding: 18px;
+            display:flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1 1 auto;
+        }
+        .product-title{
+            font-weight: 990;
+            letter-spacing: .2px;
+            margin:0;
+            font-size: 1.2rem;
+        }
+        .product-desc{
+            color: var(--muted);
+            line-height: 1.65;
+            margin:0;
+            flex: 1 1 auto;
+            font-weight:700;
+        }
+        .badge-soft{
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            color: var(--muted);
+            border-radius: 999px;
+            padding: .35rem .6rem;
+            font-weight:900;
+            font-size: .92rem;
+        }
+        .product-actions{
+            display:flex;
+            gap: 10px;
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+        .product-actions .btn{
+            border-radius: 14px;
+            font-weight: 950;
+            padding: .65rem .95rem;
+        }
+
+        .contact-panel{
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            border-radius: var(--radius);
+            padding: 22px;
+            box-shadow: var(--shadow2);
+        }
+
+        .contact-list li{
+            display:flex;
+            gap: .85rem;
+            align-items:flex-start;
+            color: var(--muted);
+            margin-bottom: 14px;
+            font-weight:700;
+        }
+        .contact-list i{
+            color: #B8D2FF;
+            margin-top: 3px;
+            flex: 0 0 auto;
+        }
+
+        .site-footer{
+            padding: 44px 0 26px;
+            border-top: 1px solid var(--line);
+            background: rgba(0,0,0,.18);
+        }
+        .theme-light .site-footer{
+            background: rgba(255,255,255,.55);
+        }
+        .site-footer a{
+            color: var(--muted);
+            text-decoration:none;
+            font-weight:900;
+        }
+        .site-footer a:hover{ color: var(--text); }
+        .site-footer .muted{ color: var(--muted); }
+
+        @media (max-width: 575px){
+            .section{ padding: 70px 0; }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- ====== 新官网（由AI重写插入）====== -->
+    <div class="topbar py-2">
+        <div class="container d-flex align-items-center justify-content-between gap-2 flex-wrap">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="pill"><i class="bi bi-shield-check me-1"></i> 质量体系与可追溯校准</span>
+                <span class="pill"><i class="bi bi-people me-1"></i> 48小时响应工程需求</span>
+            </div>
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="pill"><i class="bi bi-lightning-charge me-1"></i> 支持定制与联调</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="site-navbar">
+        <div class="container py-3 d-flex align-items-center justify-content-between gap-3 flex-wrap">
+            <a class="site-brand" href="#home2" aria-label="返回首页">
+                <span class="brand-mark">S</span>
+                <span>信科电子</span>
+            </a>
+
+            <nav class="d-flex align-items-center gap-1 flex-wrap" aria-label="主导航">
+                <a class="site-navlink active" href="#home2">首页</a>
+                <a class="site-navlink" href="#about2">关于我们</a>
+                <a class="site-navlink" href="#products2">产品中心</a>
+                <a class="site-navlink" href="#solutions2">方案与应用</a>
+                <a class="site-navlink" href="#faq2">FAQ</a>
+                <a class="site-navlink" href="#contact2">联系我们</a>
+            </nav>
+
+            <div class="d-flex align-items-center gap-2">
+                <button id="themeToggle2" class="btn btn-ghost" type="button" aria-label="切换主题">
+                    <i class="bi bi-moon-stars-fill me-2" aria-hidden="true"></i>主题
+                </button>
+                <a class="btn btn-brand" href="#contact2" style="white-space:nowrap">
+                    <i class="bi bi-chat-left-dots me-2"></i>立即咨询
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首页横幅 -->
+    <section id="home2" class="hero">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-6">
+                    <h1 class="headline">
+                        让射频测试更快、更准、更稳定
+                        <br>
+                        <span class="gradient-text">大厂级产品与工程交付</span>
+                    </h1>
+                    <p class="lead">
+                        我们聚焦信号源、功率计、频谱仪、功率放大器等核心链路，提供从研发验证到产线测试的整套解决方案，
+                        支持定制接口、联调脚本与校准体系，让您的测试流程可落地、可追踪、可规模化。
+                    </p>
+
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a class="btn btn-brand" href="#products2">
+                            <i class="bi bi-grid-3x3-gap me-2"></i>查看产品矩阵
+                        </a>
+                        <a class="btn btn-ghost" href="#contact2">
+                            <i class="bi bi-file-earmark-text me-2"></i>索取选型资料
+                        </a>
+                    </div>
+
+                    <div class="mt-4">
+                        <span class="chip"><i class="bi bi-signal me-1"></i>信号源</span>
+                        <span class="chip"><i class="bi bi-speedometer2 me-1"></i>功率计</span>
+                        <span class="chip"><i class="bi bi-bar-chart-line-fill me-1"></i>频谱仪</span>
+                        <span class="chip"><i class="bi bi-diagram-3-fill me-1"></i>功率放大器</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="site-card" style="min-height: 430px; position:relative">
+                        <div style="padding:20px 20px 0">
+                            <div class="text-uppercase" style="letter-spacing:.18em; color: var(--muted); font-weight: 900; font-size:.85rem">
+                                工程级能力
+                            </div>
+                            <div style="font-weight:990; font-size:1.3rem; margin-top:6px">
+                                从指标定义到上线交付
+                            </div>
+                        </div>
+
+                        <div class="p-3" style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+                            <div style="border:1px solid var(--line); background: rgba(255,255,255,.03); border-radius:16px; padding:14px 14px 12px; min-height:86px">
+                                <div style="font-weight:990; font-size:1.35rem; margin-bottom:6px; letter-spacing:.2px">4</div>
+                                <div style="color:var(--muted); font-weight:900; line-height:1.3; font-size:.98rem">主产品线覆盖射频关键环节</div>
+                            </div>
+                            <div style="border:1px solid var(--line); background: rgba(255,255,255,.03); border-radius:16px; padding:14px 14px 12px; min-height:86px">
+                                <div style="font-weight:990; font-size:1.35rem; margin-bottom:6px; letter-spacing:.2px">&lt;48h</div>
+                                <div style="color:var(--muted); font-weight:900; line-height:1.3; font-size:.98rem">提交需求后快速给出选型建议</div>
+                            </div>
+                            <div style="border:1px solid var(--line); background: rgba(255,255,255,.03); border-radius:16px; padding:14px 14px 12px; min-height:86px">
+                                <div style="font-weight:990; font-size:1.35rem; margin-bottom:6px; letter-spacing:.2px">多接口</div>
+                                <div style="color:var(--muted); font-weight:900; line-height:1.3; font-size:.98rem">SCPI/远程控制/产线集成友好</div>
+                            </div>
+                            <div style="border:1px solid var(--line); background: rgba(255,255,255,.03); border-radius:16px; padding:14px 14px 12px; min-height:86px">
+                                <div style="font-weight:990; font-size:1.35rem; margin-bottom:6px; letter-spacing:.2px">校准体系</div>
+                                <div style="color:var(--muted); font-weight:900; line-height:1.3; font-size:.98rem">支持报告导出与溯源管理</div>
+                            </div>
+                        </div>
+
+                        <div style="padding: 0 22px 22px; margin-top: 4px;">
+                            <div class="site-slab" style="background: rgba(255,255,255,.02); margin-top: 10px;">
+                                <div class="d-flex gap-3 align-items-start">
+                                    <div class="feature-icon"><i class="bi bi-award-fill"></i></div>
+                                    <div>
+                                        <div style="font-weight:990; font-size:1.05rem">面向“研发 + 产线”的一致体验</div>
+                                        <div style="color:var(--muted); line-height:1.7; font-weight:800; margin-top:6px">
+                                            统一的交互逻辑、可复制的测试流程、可导出的数据格式，让您的团队更快推进验证，
+                                            更稳定地实现规模化测试。
+                                        </div>
+                                        <div class="mt-3 d-flex gap-2 flex-wrap">
+                                            <span class="badge-soft"><i class="bi bi-command me-1" style="color: var(--primary)"></i>脚本/联调</span>
+                                            <span class="badge-soft"><i class="bi bi-cpu me-1" style="color: var(--primary2)"></i>自动化友好</span>
+                                            <span class="badge-soft"><i class="bi bi-clipboard-check me-1" style="color: var(--ok)"></i>流程可追踪</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about2" class="section">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-title">关于我们</div>
+                <div class="section-subtitle">
+                    我们把“可验证、可交付、可维护”当作产品设计的第一原则。不止是硬件性能，更包含工程接口、校准流程，
+                    以及产线测试可落地的整套能力。
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-7">
+                    <div class="site-slab h-100">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="feature-icon"><i class="bi bi-lightbulb-fill"></i></div>
+                            <div>
+                                <div style="font-weight:990; font-size:1.2rem">技术驱动，工程交付</div>
+                                <div style="color:var(--muted); line-height:1.7; margin-top:4px; font-weight:800">
+                                    从射频链路的稳定性设计，到测试数据与控制指令的一致性，我们用工程化思维把复杂度降下来。
+                                    让每一次验证、每一次上线都可复现。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="feature-card">
+                                    <div class="d-flex gap-3">
+                                        <div class="feature-icon"><i class="bi bi-bullseye"></i></div>
+                                        <div>
+                                            <div style="font-weight:990; margin-bottom:6px">测量更准</div>
+                                            <div style="color:var(--muted); line-height:1.7; font-weight:800">
+                                                高稳定度与一致性，提升测试重复性与对比能力。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-card">
+                                    <div class="d-flex gap-3">
+                                        <div class="feature-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                                        <div>
+                                            <div style="font-weight:990; margin-bottom:6px">分析更快</div>
+                                            <div style="color:var(--muted); line-height:1.7; font-weight:800">
+                                                重点参数可视化，快速定位问题与异常区间。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-card">
+                                    <div class="d-flex gap-3">
+                                        <div class="feature-icon"><i class="bi bi-link-45deg"></i></div>
+                                        <div>
+                                            <div style="font-weight:990; margin-bottom:6px">集成更顺</div>
+                                            <div style="color:var(--muted); line-height:1.7; font-weight:800">
+                                                支持常见接口与自动化联调，产线更容易上线。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-card">
+                                    <div class="d-flex gap-3">
+                                        <div class="feature-icon"><i class="bi bi-shield-lock-fill"></i></div>
+                                        <div>
+                                            <div style="font-weight:990; margin-bottom:6px">管理更稳</div>
+                                            <div style="color:var(--muted); line-height:1.7; font-weight:800">
+                                                校准报告可导出，可追溯维护，便于合规与审计。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="site-slab h-100">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="feature-icon"><i class="bi bi-check2-square"></i></div>
+                            <div style="font-weight:990; font-size:1.12rem">企业价值主张</div>
+                        </div>
+
+                        <ul class="list-unstyled" style="margin:0; padding:0">
+                            <li class="mb-3" style="display:flex; gap:.85rem; align-items:flex-start;">
+                                <i class="bi bi-1-circle" style="color: var(--primary2); font-weight:900"></i>
+                                <div>
+                                    <div style="font-weight:990">品质第一</div>
+                                    <div style="color:var(--muted); line-height:1.7; font-weight:800">严格的质量控制体系，确保性能稳定与一致性。</div>
+                                </div>
+                            </li>
+                            <li class="mb-3" style="display:flex; gap:.85rem; align-items:flex-start;">
+                                <i class="bi bi-2-circle" style="color: var(--primary); font-weight:900"></i>
+                                <div>
+                                    <div style="font-weight:990">技术创新</div>
+                                    <div style="color:var(--muted); line-height:1.7; font-weight:800">持续投入研发，把先进能力工程化落地。</div>
+                                </div>
+                            </li>
+                            <li class="mb-3" style="display:flex; gap:.85rem; align-items:flex-start;">
+                                <i class="bi bi-3-circle" style="color: #4ADE80; font-weight:900"></i>
+                                <div>
+                                    <div style="font-weight:990">客户至上</div>
+                                    <div style="color:var(--muted); line-height:1.7; font-weight:800">售前选型、售后维护与联调支持全流程覆盖。</div>
+                                </div>
+                            </li>
+                            <li style="display:flex; gap:.85rem; align-items:flex-start;">
+                                <i class="bi bi-4-circle" style="color: #FBBF24; font-weight:900"></i>
+                                <div>
+                                    <div style="font-weight:990">交付可靠</div>
+                                    <div style="color:var(--muted); line-height:1.7; font-weight:800">计划管理与版本迭代策略，让交付更可控。</div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="mt-4 d-grid gap-2">
+                            <a class="btn btn-brand" href="#contact2">
+                                <i class="bi bi-telephone-forward-fill me-2"></i>获取解决方案
+                            </a>
+                            <a class="btn btn-ghost" href="#faq2">
+                                <i class="bi bi-question-circle me-2"></i>查看常见问题
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品中心 -->
+    <section id="products2" class="section">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-title">产品中心</div>
+                <div class="section-subtitle">
+                    以“射频测试链路”为中心构建产品组合：信号源提供稳定激励，功率计与频谱仪完成高精度测量，
+                    功率放大器用于放大与验证。点击卡片查看规格与典型应用。
+                </div>
+            </div>
+
+            <div class="product-toolbar">
+                <div class="filter-tabs d-flex align-items-center gap-2 flex-wrap" role="tablist" aria-label="产品筛选">
+                    <button class="btn active" type="button" data-filter="all" aria-pressed="true">全部</button>
+                    <button class="btn" type="button" data-filter="signal">信号源</button>
+                    <button class="btn" type="button" data-filter="power">功率测量</button>
+                    <button class="btn" type="button" data-filter="spectrum">频谱分析</button>
+                    <button class="btn" type="button" data-filter="amp">功放放大</button>
+                </div>
+
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <label class="visually-hidden" for="productSearch2">搜索产品</label>
+                    <div class="input-group" style="min-width: 260px;">
+                        <span class="input-group-text" style="background:transparent; border:1px solid var(--line); color: var(--muted)">
+                            <i class="bi bi-search"></i>
+                        </span>
+                        <input id="productSearch2" class="form-control" type="search" placeholder="搜索：频率、功率、动态范围、联调..." />
+                    </div>
+                    <button class="btn btn-ghost" type="button" id="clearSearch2">清空</button>
+                </div>
+            </div>
+
+            <div class="product-grid row g-4" id="productGrid2">
+                <div class="col-md-6 col-lg-3 product-item" data-category="signal" data-title="信号源">
+                    <div class="product-card h-100">
+                        <div class="product-visual">
+                            <div class="grid"></div>
+                            <div class="glyph"><i class="bi bi-signal"></i></div>
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-title">信号源</h3>
+                            <p class="product-desc">稳定输出与多模式调制，适配研发验证与产线测试链路。</p>
+                            <div class="meta-row" style="display:flex; flex-wrap:wrap; gap:8px;">
+                                <span class="badge-soft"><i class="bi bi-sliders2 me-1" style="color: var(--primary)"></i>多调制</span>
+                                <span class="badge-soft"><i class="bi bi-alarm me-1" style="color: var(--primary2)"></i>高稳定</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn btn-brand" type="button" data-action="openModal2" data-product="signalSource">规格</button>
+                                <button class="btn btn-ghost" type="button" data-action="prefillContact2" data-product="信号源">询价</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 product-item" data-category="power" data-title="功率计">
+                    <div class="product-card h-100">
+                        <div class="product-visual">
+                            <div class="grid"></div>
+                            <div class="glyph"><i class="bi bi-speedometer2"></i></div>
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-title">功率计</h3>
+                            <p class="product-desc">面向射频功率测量的高精度与快响应，提升重复性与吞吐效率。</p>
+                            <div class="meta-row" style="display:flex; flex-wrap:wrap; gap:8px;">
+                                <span class="badge-soft"><i class="bi bi-clipboard-check me-1" style="color: var(--ok)"></i>线性度</span>
+                                <span class="badge-soft"><i class="bi bi-activity me-1" style="color: var(--primary2)"></i>快速响应</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn btn-brand" type="button" data-action="openModal2" data-product="powerMeter">规格</button>
+                                <button class="btn btn-ghost" type="button" data-action="prefillContact2" data-product="功率计">询价</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 product-item" data-category="spectrum" data-title="频谱仪">
+                    <div class="product-card h-100">
+                        <div class="product-visual">
+                            <div class="grid"></div>
+                            <div class="glyph"><i class="bi bi-bar-chart-line-fill"></i></div>
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-title">频谱仪</h3>
+                            <p class="product-desc">高分辨率与大动态范围，支持分析、监测与排障验证。</p>
+                            <div class="meta-row" style="display:flex; flex-wrap:wrap; gap:8px;">
+                                <span class="badge-soft"><i class="bi bi-slash-circle me-1" style="color: var(--primary)"></i>动态范围</span>
+                                <span class="badge-soft"><i class="bi bi-window-stack me-1" style="color: var(--primary2)"></i>多测量</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn btn-brand" type="button" data-action="openModal2" data-product="spectrumAnalyzer">规格</button>
+                                <button class="btn btn-ghost" type="button" data-action="prefillContact2" data-product="频谱仪">询价</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 product-item" data-category="amp" data-title="功率放大器">
+                    <div class="product-card h-100">
+                        <div class="product-visual">
+                            <div class="grid"></div>
+                            <div class="glyph"><i class="bi bi-diagram-3-fill"></i></div>
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-title">功率放大器</h3>
+                            <p class="product-desc">高效率与低失真，配套完善保护与联调接口，适用于放大验证。</p>
+                            <div class="meta-row" style="display:flex; flex-wrap:wrap; gap:8px;">
+                                <span class="badge-soft"><i class="bi bi-wrench-adjustable me-1" style="color: var(--primary2)"></i>低失真</span>
+                                <span class="badge-soft"><i class="bi bi-shield-check me-1" style="color: var(--ok)"></i>保护完善</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="btn btn-brand" type="button" data-action="openModal2" data-product="powerAmplifier">规格</button>
+                                <button class="btn btn-ghost" type="button" data-action="prefillContact2" data-product="功率放大器">询价</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 text-center">
+                <div class="site-slab" style="max-width: 920px; width: 100%">
+                    <div class="d-flex align-items-start justify-content-between gap-4 flex-wrap">
+                        <div style="min-width: 260px">
+                            <div style="font-weight:990; font-size:1.15rem; margin-bottom:6px">需要“整链路选型”而不是单机？</div>
+                            <div style="color: var(--muted); line-height:1.8; font-weight:800">
+                                告诉我们频率范围、功率目标、测量指标与产线节拍，我们将给出建议组合与联调方案（含控制与数据导出）。
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <a class="btn btn-brand" href="#contact2"><i class="bi bi-send-check me-2"></i>提交选型需求</a>
+                            <a class="btn btn-ghost" href="#solutions2"><i class="bi bi-diagram-2 me-2"></i>查看应用方案</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 方案与应用 -->
+    <section id="solutions2" class="section">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-title">方案与应用</div>
+                <div class="section-subtitle">
+                    把产品组合成可上线的工程方案。无论是研发验证还是产线测试，我们都提供可追溯的数据输出与联调路径。
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="site-slab h-100">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="feature-icon"><i class="bi bi-diagram-3"></i></div>
+                            <div>
+                                <div style="font-weight:990; font-size:1.18rem">测试链路搭建流程</div>
+                                <div style="color:var(--muted); line-height:1.7; margin-top:4px; font-weight:800">
+                                    3步走，从指标定义到联调上线，让团队快速进入验证节奏。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="feature-card h-100">
+                                    <div style="display:flex; gap:12px; align-items:flex-start">
+                                        <div class="feature-icon"><i class="bi bi-1-circle"></i></div>
+                                        <div>
+                                            <div style="font-weight:990; margin-bottom:6px">1. 定义指标</div>
+                                            <div style="color:var(--muted); line-height:1.7; font-weight:800">
+                                                明确频率/功率/精度/稳定度/测试节拍，形成可执行需求单。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="feature-card h-100">
+                                    <div style="display:flex; gap:12px; align-items:flex-start">
+                                        <div class="feature-icon"><i class="bi bi-2-circle"></i></div>
+                                        <div>
+                                            <div style="font-weight:990; margin-bottom:6px">2. 搭建链路</div>
+                                            <div style="color:var(--muted); line-height:1.7; font-weight:800">
+                                                组合信号源、测量仪器与功放，提供接口/脚本与数据格式方案。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="feature-card h-100">
+                                    <div style="display:flex; gap:12px; align-items:flex-start">
+                                        <div class="feature-icon"><i class="bi bi-3-circle"></i></div>
+                                        <div>
+                                            <div style="font-weight:990; margin-bottom:6px">3. 验证交付</div>
+                                            <div style="color:var(--muted); line-height:1.7; font-weight:800">
+                                                联调验证、产线预演、校准报告导出与维护方案输出。
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex gap-3 flex-wrap">
+                            <span class="badge-soft"><i class="bi bi-file-earmark-spreadsheet me-1" style="color: var(--primary)"></i>数据可导出</span>
+                            <span class="badge-soft"><i class="bi bi-cpu me-1" style="color: var(--primary2)"></i>联调可复现</span>
+                            <span class="badge-soft"><i class="bi bi-shield-check me-1" style="color: var(--ok)"></i>校准可追溯</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="site-slab h-100">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="feature-icon"><i class="bi bi-rocket-takeoff-fill"></i></div>
+                            <div style="font-weight:990; font-size:1.12rem">常见应用</div>
+                        </div>
+
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="feature-card">
+                                    <div class="d-flex gap-3">
+                                        <div class="feature-icon"><i class="bi bi-cpu"></i></div>
+                                        <div>
+                                            <div style="font-weight:990; margin-bottom:5px">通信信号研发验证</div>
+                                            <div style="color:var(--muted); line-height:1.7; font-weight:800">稳定激励与分析定位，缩短迭代周期。</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="feature-card">
+                                    <div class="d-flex gap-3">
+                                        <div class="feature-icon"><i class="bi bi-building"></i></div>
+                                        <div>
+                                            <div style="font-weight:990; margin-bottom:5px">射频产线测试</div>
+                                            <div style="color:var(--muted); line-height:1.7; font-weight:800">提升吞吐效率，保持测试一致性。</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="feature-card">
+                                    <div class="d-flex gap-3">
+                                        <div class="feature-icon"><i class="bi bi-lightning"></i></div>
+                                        <div>
+                                            <div style="font-weight:990; margin-bottom:5px">功放调试与验证</div>
+                                            <div style="color:var(--muted); line-height:1.7; font-weight:800">低失真放大与保护联动，更稳定的调试路径。</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <a class="btn btn-brand w-100" href="#contact2">
+                                <i class="bi bi-arrow-right-circle me-2"></i>把指标发给我们
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq2" class="section">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-title">常见问题（FAQ）</div>
+                <div class="section-subtitle">
+                    如果你还没有明确选型指标，也没关系。我们可以根据你的应用场景与测试目标，反向帮助你梳理需求。
+                </div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-9">
+                    <div class="site-slab">
+                        <div class="accordion" id="faqAccordion2">
+                            <div class="accordion-item" style="background: rgba(255,255,255,.02); border:1px solid var(--line); border-radius:14px; margin-bottom:12px;">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" style="background: transparent; color: var(--text); font-weight:990" type="button" data-bs-toggle="collapse" data-bs-target="#faq12" aria-expanded="true" aria-controls="faq12">
+                                        能否提供整套链路的选型与联调建议？
+                                    </button>
+                                </h2>
+                                <div id="faq12" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion2">
+                                    <div class="accordion-body" style="color: var(--muted); font-weight:800; line-height:1.8">
+                                        可以。我们会根据频率范围、功率目标、测量精度、测试节拍与控制方式，给出建议组合与接口/脚本/数据导出方案，并在联调阶段验证关键指标。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item" style="background: rgba(255,255,255,.02); border:1px solid var(--line); border-radius:14px; margin-bottom:12px;">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" style="background: transparent; color: var(--text); font-weight:990" type="button" data-bs-toggle="collapse" data-bs-target="#faq22" aria-expanded="false" aria-controls="faq22">
+                                        是否支持定制接口或特殊需求？
+                                    </button>
+                                </h2>
+                                <div id="faq22" class="accordion-collapse collapse" data-bs-parent="#faqAccordion2">
+                                    <div class="accordion-body" style="color: var(--muted); font-weight:800; line-height:1.8">
+                                        支持。常见包括接口适配、控制协议/指令扩展、测试流程的脚本化输出、以及特定测量项的定制呈现。我们会在沟通后给出可行性与交付路径。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item" style="background: rgba(255,255,255,.02); border:1px solid var(--line); border-radius:14px; margin-bottom:12px;">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" style="background: transparent; color: var(--text); font-weight:990" type="button" data-bs-toggle="collapse" data-bs-target="#faq32" aria-expanded="false" aria-controls="faq32">
+                                        校准报告能否导出，如何追溯？
+                                    </button>
+                                </h2>
+                                <div id="faq32" class="accordion-collapse collapse" data-bs-parent="#faqAccordion2">
+                                    <div class="accordion-body" style="color: var(--muted); font-weight:800; line-height:1.8">
+                                        可以。我们提供可导出的校准报告与溯源信息（演示页面不含真实后端），用于管理与审计。实际交付中会按你的需求形式输出。
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item" style="background: rgba(255,255,255,.02); border:1px solid var(--line); border-radius:14px;">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" style="background: transparent; color: var(--text); font-weight:990" type="button" data-bs-toggle="collapse" data-bs-target="#faq42" aria-expanded="false" aria-controls="faq42">
+                                        如果我们还没确定参数，怎么开始？
+                                    </button>
+                                </h2>
+                                <div id="faq42" class="accordion-collapse collapse" data-bs-parent="#faqAccordion2">
+                                    <div class="accordion-body" style="color: var(--muted); font-weight:800; line-height:1.8">
+                                        你可以直接通过“联系我们”提交应用场景与目标（例如频率/功率大概范围、测试用途、是否产线量产）。我们会给出澄清问题清单与选型建议，帮助你快速确定参数。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact2" class="section">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-title">联系我们</div>
+                <div class="section-subtitle">
+                    提交需求后，我们将安排工程团队快速跟进：给出选型建议、联调路径与交付计划（演示表单会在前端模拟提交）。
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <div class="contact-panel h-100">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="feature-icon"><i class="bi bi-headset"></i></div>
+                            <div style="font-weight:990; font-size:1.12rem">联系信息</div>
+                        </div>
+
+                        <ul class="contact-list list-unstyled">
+                            <li>
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div>
+                                    <div style="color: var(--text); font-weight:990">地址</div>
+                                    <div>北京市海淀区（示例地址，可替换为真实信息）</div>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="bi bi-telephone-fill"></i>
+                                <div>
+                                    <div style="color: var(--text); font-weight:990">电话</div>
+                                    <div>010-88888888（示例）</div>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="bi bi-envelope-fill"></i>
+                                <div>
+                                    <div style="color: var(--text); font-weight:990">邮箱</div>
+                                    <div>info@xinkedianzi.com（示例）</div>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="bi bi-clock-fill"></i>
+                                <div>
+                                    <div style="color: var(--text); font-weight:990">工作时间</div>
+                                    <div>周一至周五 9:00-18:00</div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="mt-4 site-slab">
+                            <div class="d-flex gap-3 align-items-start">
+                                <div class="feature-icon"><i class="bi bi-file-earmark-lock"></i></div>
+                                <div>
+                                    <div style="font-weight:990">快速交付承诺</div>
+                                    <div style="color:var(--muted); line-height:1.7; font-weight:800; margin-top:6px">
+                                        你提供应用目标，我们提供选型建议与联调路径。对产线项目，我们会给出上线节拍与数据格式建议。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="contact-panel">
+                        <form id="contactForm2" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="cName2" class="form-label" style="font-weight:990">姓名</label>
+                                    <input id="cName2" class="form-control" type="text" placeholder="请输入您的姓名" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cEmail2" class="form-label" style="font-weight:990">邮箱</label>
+                                    <input id="cEmail2" class="form-control" type="email" placeholder="请输入您的邮箱" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="cCompany2" class="form-label" style="font-weight:990">公司/单位</label>
+                                    <input id="cCompany2" class="form-control" type="text" placeholder="请输入公司名称（选填也可以）">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cProduct2" class="form-label" style="font-weight:990">需求产品</label>
+                                    <select id="cProduct2" class="form-select">
+                                        <option value="未选择">未选择（建议我们帮你选型）</option>
+                                        <option value="信号源">信号源</option>
+                                        <option value="功率计">功率计</option>
+                                        <option value="频谱仪">频谱仪</option>
+                                        <option value="功率放大器">功率放大器</option>
+                                        <option value="整链路组合">整链路组合（信号源+测量+功放）</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label" style="font-weight:990">需求类型</label>
+                                    <div class="d-flex gap-2 flex-wrap">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="报价" id="tQuote2">
+                                            <label class="form-check-label" for="tQuote2">报价</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="样机评估" id="tEval2">
+                                            <label class="form-check-label" for="tEval2">样机评估</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="资料下载" id="tDocs2">
+                                            <label class="form-check-label" for="tDocs2">资料下载</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="联调与集成" id="tIntegrate2">
+                                            <label class="form-check-label" for="tIntegrate2">联调与集成</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="cMessage2" class="form-label" style="font-weight:990">应用描述 / 指标需求</label>
+                                    <textarea id="cMessage2" class="form-control" rows="5" placeholder="例如：频率范围、功率目标、测量精度、测试用途（研发/产线）、计划上线时间等" required></textarea>
+                                </div>
+
+                                <div class="col-12 d-flex gap-2 flex-wrap align-items-center justify-content-between">
+                                    <div style="color: var(--muted); font-weight:800">提交后我们会在演示页面用 Toast 提示（无需后端）。</div>
+                                    <button type="submit" class="btn btn-brand">
+                                        <i class="bi bi-send-fill me-2"></i>提交需求
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="mt-4 site-slab">
+                            <div class="d-flex gap-3 align-items-start">
+                                <div class="feature-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                                <div>
+                                    <div style="font-weight:990; margin-bottom:6px">为了更快给出选型建议</div>
+                                    <div style="color: var(--muted); line-height:1.8; font-weight:800">
+                                        请尽量提供：频率范围、输出/测量功率、目标误差或分辨率、是否需要远程控制与数据导出、产线节拍要求。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品规格弹窗（新） -->
+    <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content" style="background: var(--card); color: var(--text); border:1px solid var(--line)">
+                <div class="modal-header" style="border-bottom:1px solid var(--line)">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="feature-icon"><i class="bi bi-diagram-3"></i></div>
+                        <div>
+                            <h5 class="modal-title mb-0" id="productModalLabel2">产品规格</h5>
+                            <div class="text-muted" id="productModalTag2" style="color: var(--muted); font-weight:900; margin-top:4px">—</div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="关闭" style="filter:none;"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3" id="productModalDesc2" style="color: var(--muted); line-height:1.8; font-weight:800"></div>
+
+                    <div class="row g-3">
+                        <div class="col-lg-6">
+                            <div class="site-slab">
+                                <div style="font-weight:990; margin-bottom:10px">关键规格（示例）</div>
+                                <ul class="list-unstyled mb-0" id="productModalSpecList2"></ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="site-slab">
+                                <div style="font-weight:990; margin-bottom:10px">核心能力</div>
+                                <ul class="list-unstyled mb-0" id="productModalFeatureList2"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="site-slab mt-3">
+                        <div style="font-weight:990; margin-bottom:10px">典型应用场景</div>
+                        <div class="d-flex flex-wrap gap-2" id="productModalUseCases2"></div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border-top:1px solid var(--line)">
+                    <button type="button" class="btn btn-ghost" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-brand" id="productModalAsk2">
+                        <i class="bi bi-briefcase-fill me-2"></i>询价该产品
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast（新） -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast2" class="toast text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header" style="background: rgba(0,0,0,.25)">
+                <strong class="me-auto">信科电子</strong>
+                <button type="button" class="btn-close btn-close-white ms-2 mb-1" data-bs-dismiss="toast" aria-label="关闭"></button>
+            </div>
+            <div class="toast-body" style="color: var(--text); font-weight:900" id="toastBody2">已提交（演示）。</div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="brand-mark" style="width:36px; height:36px">S</div>
+                        <div>
+                            <div style="font-weight:990; font-size:1.1rem">信科电子</div>
+                            <div class="muted" style="font-weight:900; margin-top:4px">射频测试测量产品与工程方案</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div style="font-weight:990; margin-bottom:10px">快速链接</div>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="#home2">首页</a>
+                        <a href="#about2">关于我们</a>
+                        <a href="#products2">产品中心</a>
+                        <a href="#solutions2">方案与应用</a>
+                        <a href="#contact2">联系我们</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div style="font-weight:990; margin-bottom:10px">关注我们</div>
+                    <div class="muted" style="font-weight:900; line-height:1.8">
+                        微信公众号：信科电子（示例）
+                        <br>
+                        官方微博：@信科电子（示例）
+                    </div>
+                </div>
+            </div>
+
+            <hr style="border-color: var(--line); margin: 22px 0">
+            <div class="text-center muted" style="font-weight:900">
+                &copy; 2026 信科电子有限公司. 保留所有权利.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== 新官网结束 ====== -->
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <strong>信科电子</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">关于我们</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">产品中心</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>专业电子测试仪器供应商</h1>
+            <p>提供高质量的信号源、功率计、频谱仪和功率放大器</p>
+            <a href="#products" class="btn btn-light btn-lg">查看产品</a>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="section about-us">
+        <div class="container">
+            <h2 class="section-title">关于我们</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>公司简介</h3>
+                    <p>信科电子是一家专业从事电子测试仪器研发、生产和销售的高科技企业。我们致力于为客户提供高质量、高性能的测试测量解决方案，产品广泛应用于通信、航空航天、国防、科研院所等领域。</p>
+                    <p>公司拥有一支经验丰富的研发团队，始终保持技术创新，不断推出符合市场需求的新产品。我们坚持以客户为中心，提供完善的售前咨询和售后服务，赢得了广大客户的信赖和好评。</p>
+                </div>
+                <div class="col-lg-6">
+                    <h3>企业理念</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">品质第一：严格的质量控制体系，确保产品性能稳定可靠</li>
+                        <li class="list-group-item">技术创新：持续投入研发，保持技术领先优势</li>
+                        <li class="list-group-item">客户至上：提供优质的产品和服务，满足客户需求</li>
+                        <li class="list-group-item">诚信经营：坚持诚信为本，建立长期合作关系</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品中心 -->
+    <section id="products" class="section">
+        <div class="container">
+            <h2 class="section-title">产品中心</h2>
+            <div class="row g-4">
+                <!-- 信号源 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/400x200?text=信号源" class="card-img-top" alt="信号源">
+                        <div class="card-body">
+                            <h5 class="card-title">信号源</h5>
+                            <p class="card-text">高性能信号源，支持多种调制方式，频率范围宽，输出稳定，适用于各种电子测试场景。</p>
+                            <a href="#" class="btn btn-primary">了解更多</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 功率计 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/400x200?text=功率计" class="card-img-top" alt="功率计">
+                        <div class="card-body">
+                            <h5 class="card-title">功率计</h5>
+                            <p class="card-text">高精度功率计，测量范围广，响应速度快，具有良好的线性度和稳定性，适用于射频功率测量。</p>
+                            <a href="#" class="btn btn-primary">了解更多</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 频谱仪 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/400x200?text=频谱仪" class="card-img-top" alt="频谱仪">
+                        <div class="card-body">
+                            <h5 class="card-title">频谱仪</h5>
+                            <p class="card-text">高性能频谱仪，频率分辨率高，动态范围大，具有丰富的测量功能，适用于信号分析和频谱监测。</p>
+                            <a href="#" class="btn btn-primary">了解更多</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 功率放大器 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/400x200?text=功率放大器" class="card-img-top" alt="功率放大器">
+                        <div class="card-body">
+                            <h5 class="card-title">功率放大器</h5>
+                            <p class="card-text">高功率放大器，输出功率大，效率高，失真小，具有完善的保护功能，适用于射频信号放大。</p>
+                            <a href="#" class="btn btn-primary">了解更多</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">联系我们</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>联系方式</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+                            <strong>地址：</strong>北京市海淀区中关村科技园区
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-telephone-fill text-primary me-2"></i>
+                            <strong>电话：</strong>010-88888888
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-envelope-fill text-primary me-2"></i>
+                            <strong>邮箱：</strong>info@xinkedianzi.com
+                        </li>
+                        <li class="mb-3">
+                            <i class="bi bi-clock-fill text-primary me-2"></i>
+                            <strong>营业时间：</strong>周一至周五 9:00-18:00
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <h3>留言咨询</h3>
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">姓名</label>
+                            <input type="text" class="form-control" id="name" placeholder="请输入您的姓名">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">邮箱</label>
+                            <input type="email" class="form-control" id="email" placeholder="请输入您的邮箱">
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">主题</label>
+                            <input type="text" class="form-control" id="subject" placeholder="请输入留言主题">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">留言内容</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="请输入留言内容"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">提交留言</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>信科电子</h4>
+                    <p>专业电子测试仪器供应商</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>快速链接</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#products">产品中心</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>关注我们</h4>
+                    <p>微信公众号：信科电子</p>
+                    <p>官方微博：@信科电子</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2024 信科电子有限公司. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const body = document.body;
+
+            // ===== 主题切换 =====
+            const themeToggle = document.getElementById('themeToggle2');
+            function setTheme(theme) {
+                if (theme === 'light') {
+                    body.classList.add('theme-light');
+                    themeToggle && (themeToggle.innerHTML = '<i class="bi bi-sun-fill me-2" aria-hidden="true"></i>主题');
+                } else {
+                    body.classList.remove('theme-light');
+                    themeToggle && (themeToggle.innerHTML = '<i class="bi bi-moon-stars-fill me-2" aria-hidden="true"></i>主题');
+                }
+                try { localStorage.setItem('theme', theme); } catch (_) {}
+            }
+
+            if (themeToggle) {
+                const saved = (() => {
+                    try { return localStorage.getItem('theme'); } catch (_) { return null; }
+                })();
+                setTheme(saved === 'light' ? 'light' : 'dark');
+                themeToggle.addEventListener('click', function () {
+                    setTheme(body.classList.contains('theme-light') ? 'dark' : 'light');
+                });
+            }
+
+            // ===== 产品规格数据（示例参数，可替换为真实参数）=====
+            const products = {
+                signalSource: {
+                    title: '信号源',
+                    tag: '稳定激励 · 多调制 · 工程联调',
+                    desc: '用于研发验证与产线测试的信号激励平台：支持多模式调制与远程控制，提升测试一致性与吞吐效率。',
+                    specs: ['频率覆盖范围：示例 10 MHz - 6 GHz', '输出幅度：示例 ±0.5 dB', '调制能力：AM/FM/PM/QAM（示例）', '远程控制：SCPI/指令集（示例）'],
+                    features: ['高稳定度与重复性设计', '统一控制与数据导出接口', '支持联调与测试脚本', '适配多种测试链路'],
+                    useCases: ['通信射频验证', '调制解调器测试', '产线一致性检测', '功放前端驱动调试']
+                },
+                powerMeter: {
+                    title: '功率计',
+                    tag: '高精度功率测量 · 快响应 · 可追溯校准',
+                    desc: '面向射频功率测量的高精度平台：用于功率评估、线性度验证与产线快速测量，保证结果可复现。',
+                    specs: ['功率测量范围：示例 -60 dBm - +20 dBm', '响应速度：示例 10 ms 级', '线性度：示例 优于 ±0.5%（示例）', '校准报告：可导出（示例）'],
+                    features: ['快速读数提升吞吐', '线性度与一致性设计', '数据格式统一便于集成', '可追溯校准管理'],
+                    useCases: ['功率一致性检测', '功放增益评估', '射频器件测试', '研发阶段快速迭代']
+                },
+                spectrumAnalyzer: {
+                    title: '频谱仪',
+                    tag: '频谱分析 · 动态范围 · 排障与监测',
+                    desc: '提供频谱分析与监测能力：高分辨率与大动态范围用于评估噪声、杂散与频谱特性，支持研发排障。',
+                    specs: ['频率范围：示例 9 kHz - 6 GHz', '分辨率带宽：示例 1 Hz 级', '动态范围：示例 90 dB（示例）', '测量模式：RBW/峰值/占用带宽（示例）'],
+                    features: ['多测量项提升分析效率', '可视化关键参数', '适配远程控制与脚本', '便于联调排障'],
+                    useCases: ['杂散/噪声评估', '频谱占用分析', '信号完整性验证', '频谱监测与异常定位']
+                },
+                powerAmplifier: {
+                    title: '功率放大器',
+                    tag: '功率放大 · 低失真 · 保护完善',
+                    desc: '用于射频功率放大与验证的工程平台：输出稳定，配套保护与联调接口，适用于调试与性能验证。',
+                    specs: ['输出功率能力：示例 0.5 W - 10 W（示例）', '失真性能：示例 IMD/THD（示例）', '保护机制：温度/驻波/过流（示例）', '联调接口：控制与状态回读（示例）'],
+                    features: ['低失真与高效率优化', '完善保护与状态监测', '便于与信号源/测量仪器联调', '可用于验证与迭代'],
+                    useCases: ['功放调试验证', '链路增益评估', '发射前端测试', '射频模块集成联测']
+                }
+            };
+
+            // ===== 产品弹窗 =====
+            const modalEl = document.getElementById('productModal2');
+            const productModal = modalEl ? new bootstrap.Modal(modalEl) : null;
+
+            function fillProductModal(productKey) {
+                const p = products[productKey];
+                if (!p) return;
+
+                const label = document.getElementById('productModalLabel2');
+                const tag = document.getElementById('productModalTag2');
+                const desc = document.getElementById('productModalDesc2');
+                const specList = document.getElementById('productModalSpecList2');
+                const featureList = document.getElementById('productModalFeatureList2');
+                const useCases = document.getElementById('productModalUseCases2');
+                const askBtn = document.getElementById('productModalAsk2');
+
+                if (label) label.textContent = p.title;
+                if (tag) tag.textContent = p.tag;
+                if (desc) desc.textContent = p.desc;
+
+                if (specList) {
+                    specList.innerHTML = '';
+                    p.specs.forEach(function (s) {
+                        const li = document.createElement('li');
+                        li.className = 'd-flex align-items-start gap-2 mb-2';
+                        li.innerHTML = '<i class="bi bi-caret-right-fill" style="color: var(--primary)"></i><div style="color: var(--muted); font-weight:900; line-height:1.6">' + s + '</div>';
+                        specList.appendChild(li);
+                    });
+                }
+
+                if (featureList) {
+                    featureList.innerHTML = '';
+                    p.features.forEach(function (f) {
+                        const li = document.createElement('li');
+                        li.className = 'd-flex align-items-start gap-2 mb-2';
+                        li.innerHTML = '<i class="bi bi-check2-circle" style="color: var(--ok)"></i><div style="color: var(--muted); font-weight:900; line-height:1.6">' + f + '</div>';
+                        featureList.appendChild(li);
+                    });
+                }
+
+                if (useCases) {
+                    useCases.innerHTML = '';
+                    p.useCases.forEach(function (u) {
+                        const span = document.createElement('span');
+                        span.className = 'badge-soft';
+                        span.textContent = u;
+                        useCases.appendChild(span);
+                    });
+                }
+
+                if (askBtn) {
+                    askBtn.onclick = function () {
+                        const name = document.getElementById('productModalLabel2') ? document.getElementById('productModalLabel2').textContent : p.title;
+                        const productSel = document.getElementById('cProduct2');
+                        if (productSel) productSel.value = name;
+                        const msg = document.getElementById('cMessage2');
+                        productModal && productModal.hide();
+                        document.getElementById('contact2') && document.getElementById('contact2').scrollIntoView({ behavior: 'smooth' });
+                        setTimeout(function () { msg && msg.focus(); }, 250);
+                    };
+                }
+            }
+
+            // ===== 产品筛选 + 搜索 =====
+            let activeFilter = 'all';
+            const search = document.getElementById('productSearch2');
+            const clearSearch = document.getElementById('clearSearch2');
+            const filterButtons = Array.from(document.querySelectorAll('#products2 .filter-tabs button[data-filter]'));
+
+            function applyFilter() {
+                const q = (search && search.value ? search.value : '').trim().toLowerCase();
+                const items = Array.from(document.querySelectorAll('#productGrid2 .product-item'));
+                items.forEach(function (item) {
+                    const cat = item.getAttribute('data-category') || '';
+                    const title = (item.getAttribute('data-title') || '').toLowerCase();
+                    const matchFilter = activeFilter === 'all' ? true : (activeFilter === cat);
+                    const matchQuery = !q ? true : title.includes(q);
+                    item.style.display = (matchFilter && matchQuery) ? '' : 'none';
+                });
+            }
+
+            filterButtons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    filterButtons.forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+                    activeFilter = btn.getAttribute('data-filter') || 'all';
+                    applyFilter();
+                });
+            });
+
+            if (search) search.addEventListener('input', applyFilter);
+            if (clearSearch) clearSearch.addEventListener('click', function () {
+                if (search) search.value = '';
+                applyFilter();
+            });
+
+            // ===== 卡片点击：打开弹窗 / 回填询价 =====
+            document.addEventListener('click', function (e) {
+                const el = e.target.closest('[data-action]');
+                if (!el) return;
+
+                const action = el.getAttribute('data-action');
+                const product = el.getAttribute('data-product');
+
+                if (action === 'openModal2') {
+                    fillProductModal(product);
+                    productModal && productModal.show();
+                }
+
+                if (action === 'prefillContact2') {
+                    const sel = document.getElementById('cProduct2');
+                    if (sel) sel.value = product;
+                    const contact = document.getElementById('contact2');
+                    contact && contact.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(function () {
+                        const msg = document.getElementById('cMessage2');
+                        msg && msg.focus();
+                    }, 250);
+                }
+            });
+
+            // ===== 导航高亮（滚动定位）=====
+            const navLinks = Array.from(document.querySelectorAll('.site-navlink'));
+            const sectionIds = ['home2', 'about2', 'products2', 'solutions2', 'faq2', 'contact2'];
+            const sections = sectionIds.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+            function updateNav() {
+                const y = window.scrollY + 120;
+                let current = null;
+                sections.forEach(function (s) { if (s.offsetTop <= y) current = s; });
+                navLinks.forEach(function (a) {
+                    const href = a.getAttribute('href');
+                    a.classList.toggle('active', current && href === '#' + current.id);
+                });
+            }
+            window.addEventListener('scroll', updateNav, { passive: true });
+            updateNav();
+
+            // ===== 联系表单提交（演示）=====
+            const form = document.getElementById('contactForm2');
+            const toastEl = document.getElementById('liveToast2');
+            const toast = toastEl ? new bootstrap.Toast(toastEl, { delay: 2600 }) : null;
+            function showToast(msg) {
+                const bodyEl = document.getElementById('toastBody2');
+                if (bodyEl) bodyEl.textContent = msg;
+                toast && toast.show();
+            }
+
+            if (form) {
+                form.addEventListener('submit', function (ev) {
+                    ev.preventDefault();
+                    const name = document.getElementById('cName2');
+                    const email = document.getElementById('cEmail2');
+                    const message = document.getElementById('cMessage2');
+
+                    const emailOk = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test((email && email.value) ? email.value.trim() : '');
+                    if (!name || !name.value.trim()) return showToast('请填写姓名。');
+                    if (!email || !emailOk) return showToast('请填写正确的邮箱地址。');
+                    if (!message || !message.value.trim()) return showToast('请填写应用描述/指标需求。');
+
+                    const productSel = document.getElementById('cProduct2');
+                    const types = [
+                        document.getElementById('tQuote2'),
+                        document.getElementById('tEval2'),
+                        document.getElementById('tDocs2'),
+                        document.getElementById('tIntegrate2')
+                    ].filter(function (x) { return x && x.checked; }).map(function (x) { return x.value; });
+
+                    const product = productSel ? productSel.value : '未选择';
+                    const typeText = types.length ? types.join('、') : '未选择';
+                    showToast('已提交（演示）。产品：' + product + '；需求：' + typeText);
+
+                    form.reset();
+                    if (productSel) productSel.value = '未选择';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
