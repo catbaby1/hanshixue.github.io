@@ -813,6 +813,7 @@ html[data-lang="en"] .inner-hero .display-title { font-size: clamp(40px,4.6vw,68
 .contact-card .contact-label { color: var(--muted-2); font-family: var(--font-mono); font-size: 8px; letter-spacing: .11em; }
 .contact-card strong { display: block; margin-top: 8px; color: var(--text); font-size: clamp(21px,2.2vw,29px); font-weight: 610; letter-spacing: -.03em; }
 .contact-card:nth-child(2) strong { font-size: clamp(15px,1.75vw,22px); overflow-wrap: anywhere; }
+.contact-address-card strong { max-width: 390px; padding-right: 40px; font-size: 14px; font-weight: 560; line-height: 1.8; letter-spacing: 0; }
 .contact-card span.contact-sub { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; }
 .contact-card .contact-arrow { position: absolute; right: 18px; top: 18px; color: var(--accent); font-size: 15px; }
 .contact-main-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
@@ -953,6 +954,7 @@ html[data-lang="en"] .inner-hero .display-title { font-size: clamp(40px,4.6vw,68
   .timeline { grid-template-columns: 1fr; }
   .timeline-step + .timeline-step { border-left: 0; border-top: 1px solid var(--line); }
   .contact-card strong { font-size: 23px; }
+  .contact-address-card strong { padding-right: 34px; font-size: 14px; }
   .copy-btn { right: 46px; }
   .contact-form-panel { padding: 22px 18px; }
   .form-grid { grid-template-columns: 1fr; }
