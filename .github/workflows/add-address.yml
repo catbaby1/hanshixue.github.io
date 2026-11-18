@@ -1,0 +1,98 @@
+name: Add company address
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-address.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add-address:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add address content
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          contact_path = Path('contact.html')
+          contact = contact_path.read_text(encoding='utf-8')
+          if 'contact-address-card' in contact:
+              raise SystemExit('Address card already exists')
+
+          email_card = re.search(
+              r'(<a class="contact-arrow" href="mailto:lwhwdmdc@gmail\.com" aria-label="发送邮件">↗</a>\s*</div>)',
+              contact
+          )
+          if not email_card:
+              raise SystemExit('Email card closing marker not found')
+
+          address_card = '''
+                    <div class="contact-card contact-address-card">
+                      <span class="contact-label" data-i18n="contact.addressLabel">ADDRESS / 地址</span>
+                      <strong data-i18n="contact.address">四川省成都市高新西区汇都科技总部园一期4栋6楼412-2</strong>
+                      <span class="contact-sub" data-i18n="contact.addressSub">到访前请联系林经理确认</span>
+                      <button class="copy-btn" type="button" data-copy="四川省成都市高新西区汇都科技总部园一期4栋6楼412-2" data-i18n="contact.copy">复制</button>
+                    </div>'''
+          contact = contact[:email_card.end()] + address_card + contact[email_card.end():]
+          contact_path.write_text(contact, encoding='utf-8')
+
+          app_path = Path('app.js')
+          app = app_path.read_text(encoding='utf-8')
+          email_key = "    'contact.emailSub': { zh: '发送需求、图纸或规格说明', en: 'Send requirements, drawings or specifications' },"
+          if "'contact.addressLabel'" not in app:
+              if email_key not in app:
+                  raise SystemExit('contact.emailSub key not found')
+              additions = "\n    'contact.addressLabel': { zh: 'ADDRESS / 地址', en: 'ADDRESS' },\n    'contact.address': { zh: '四川省成都市高新西区汇都科技总部园一期4栋6楼412-2', en: 'Room 412-2, 6F, Building 4, Phase I, Huidu Technology Headquarters Park, High-tech West District, Chengdu, Sichuan, China' },\n    'contact.addressSub': { zh: '到访前请联系林经理确认', en: 'Please confirm your visit with Manager Lin in advance' },"
+              app = app.replace(email_key, email_key + additions, 1)
+              app_path.write_text(app, encoding='utf-8')
+
+          css_path = Path('site.css')
+          css = css_path.read_text(encoding='utf-8')
+          if '.contact-address-card strong' not in css:
+              email_rule = '.contact-card:nth-child(2) strong { font-size: clamp(15px,1.75vw,22px); overflow-wrap: anywhere; }'
+              if email_rule not in css:
+                  raise SystemExit('Email card CSS rule not found')
+              css = css.replace(
+                  email_rule,
+                  email_rule + '\n.contact-address-card strong { max-width: 390px; padding-right: 40px; font-size: 14px; font-weight: 560; line-height: 1.8; letter-spacing: 0; }',
+                  1
+              )
+              mobile_rule = '  .contact-card strong { font-size: 23px; }\n  .copy-btn { right: 46px; }'
+              if mobile_rule not in css:
+                  raise SystemExit('Mobile contact CSS rule not found')
+              css = css.replace(
+                  mobile_rule,
+                  '  .contact-card strong { font-size: 23px; }\n  .contact-address-card strong { padding-right: 34px; font-size: 14px; }\n  .copy-btn { right: 46px; }',
+                  1
+              )
+              css_path.write_text(css, encoding='utf-8')
+
+          for name in ['index.html', 'products.html', 'about.html', 'contact.html']:
+              path = Path(name)
+              text = path.read_text(encoding='utf-8')
+              text = text.replace('site.css?v=11', 'site.css?v=12').replace('app.js?v=12', 'app.js?v=13')
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html products.html about.html contact.html app.js site.css
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add company address to contact page"
+            git push origin HEAD:main
+          fi
