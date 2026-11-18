@@ -490,7 +490,7 @@ html[data-lang="en"] .inner-hero .display-title { font-size: clamp(40px,4.6vw,68
 .hero-description strong { color: var(--text-soft); font-weight: 570; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
-.hero-visual { position: relative; min-height: 570px; display: flex; align-items: center; justify-content: center; perspective: 1100px; }
+.hero-visual { position: relative; min-height: 570px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; perspective: 1100px; }
 .hero-visual::before {
   content: "ZYPA / RF ENGINEERING PLATFORM";
   position: absolute;
@@ -541,11 +541,13 @@ html[data-lang="en"] .inner-hero .display-title { font-size: clamp(40px,4.6vw,68
 .hero-gallery-item span { position: absolute; left: 10px; bottom: 9px; padding: 4px 7px; border: 1px solid rgba(105,226,250,.22); background: rgba(4,14,23,.66); color: #cffaff; font-family: var(--font-mono); font-size: 7px; letter-spacing: .1em; }
 .hero-stage-label { position: absolute; top: 20px; left: 20px; z-index: 2; padding: 7px 10px; border: 1px solid rgba(101, 227, 251, .3); background: rgba(4, 14, 23, .76); color: #d5fbff; font-family: var(--font-mono); font-size: 8px; letter-spacing: .12em; }
 .hero-stage-label::before { content: ""; display: inline-block; width: 5px; height: 5px; margin-right: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.hero-data-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; position: relative; z-index: 4; }
 .hero-float {
-  position: absolute;
+  position: relative;
   z-index: 4;
-  min-width: 155px;
-  padding: 13px 15px;
+  width: 100%;
+  min-width: 0;
+  padding: 12px 14px;
   border: 1px solid var(--stage-line);
   background: color-mix(in srgb, var(--stage) 88%, transparent);
   box-shadow: 0 18px 50px rgba(0,0,0,.28);
@@ -555,8 +557,7 @@ html[data-lang="en"] .inner-hero .display-title { font-size: clamp(40px,4.6vw,68
 .hero-float small { display: block; color: #6e899b; font-family: var(--font-mono); font-size: 8px; letter-spacing: .12em; }
 .hero-float strong { display: block; margin-top: 5px; color: #f4fcff; font-size: 23px; font-weight: 620; line-height: 1.1; letter-spacing: -.04em; }
 .hero-float strong em { margin-left: 4px; color: #7fefff; font-family: var(--font-mono); font-size: 8px; font-style: normal; letter-spacing: .06em; }
-.hero-float.float-a { left: -26px; bottom: 52px; }
-.hero-float.float-b { right: -28px; top: 82px; }
+.hero-float.float-a, .hero-float.float-b { left: auto; right: auto; top: auto; bottom: auto; }
 .scroll-label { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; color: var(--muted-2); font-family: var(--font-mono); font-size: 8px; letter-spacing: .15em; }
 .scroll-label::before { content: ""; width: 1px; height: 34px; background: linear-gradient(to bottom, transparent, var(--accent)); }
 @keyframes scan { 0% { transform: translateY(-120%); } 65%,100% { transform: translateY(650%); } }
@@ -850,8 +851,6 @@ html[data-lang="en"] .inner-hero .display-title { font-size: clamp(40px,4.6vw,68
   .nav-link { font-size: 12px; }
   .nav-cta { display: none; }
   .hero-layout { grid-template-columns: .95fr 1.05fr; gap: 30px; }
-  .hero-float.float-a { left: -8px; }
-  .hero-float.float-b { right: -8px; }
   .catalog-layout { grid-template-columns: 205px minmax(0,1fr); gap: 34px; }
   .model-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
@@ -911,10 +910,9 @@ html[data-lang="en"] .inner-hero .display-title { font-size: clamp(40px,4.6vw,68
   .hero-description { font-size: 14px; }
   .hero-actions .btn { width: 100%; }
   .hero-visual { min-height: 385px; }
-  .hero-float { min-width: 130px; padding: 11px 12px; }
-  .hero-float strong { font-size: 19px; }
-  .hero-float.float-a { left: 4px; bottom: 20px; }
-  .hero-float.float-b { right: 3px; top: 38px; }
+  .hero-data-strip { gap: 8px; }
+  .hero-float { min-width: 0; padding: 10px 11px; }
+  .hero-float strong { font-size: 18px; }
   .scroll-label { display: none; }
   .metric { padding: 19px 15px; }
   .metric strong { font-size: 25px; }
