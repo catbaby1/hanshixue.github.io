@@ -336,7 +336,7 @@
             '<div><span>' + tr('common.gain') + '</span><strong>' + gain + '</strong></div>' +
             noiseBlock +
           '</div>' +
-          '<a class="model-link" href="mailto:lwdwdmdc@gmail.com?subject=' + subject + '">' + tr('common.consultModel') + '</a>' +
+          '<a class="model-link" href="mailto:lwhwdmdc@gmail.com?subject=' + subject + '">' + tr('common.consultModel') + '</a>' +
         '</article>';
       }).join('');
       grid.innerHTML = cards;
@@ -525,7 +525,7 @@
         const lines = lang === 'zh'
           ? ['称呼：' + (data.get('name') || ''), '公司：' + (data.get('company') || ''), '联系方式：' + (data.get('contact') || ''), '项目方向：' + direction, '', '需求说明：', (data.get('message') || '')]
           : ['Name: ' + (data.get('name') || ''), 'Company: ' + (data.get('company') || ''), 'Contact: ' + (data.get('contact') || ''), 'Product direction: ' + direction, '', 'Project details:', (data.get('message') || '')];
-        window.location.href = 'mailto:lwdwdmdc@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
+        window.location.href = 'mailto:lwhwdmdc@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines.join('\n'));
         showToast(tr('contact.mailOpening'));
       });
     }
