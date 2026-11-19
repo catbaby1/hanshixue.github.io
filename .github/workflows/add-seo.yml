@@ -1,0 +1,148 @@
+name: Add sitemap and search engine metadata
+
+on:
+  push:
+    paths:
+      - '.github/workflows/add-seo.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add SEO files and metadata
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          import re
+
+          base = 'https://crkgl.dpdns.org'
+          pages = [
+              ('index.html', '/', 'WebPage'),
+              ('products.html', '/products.html', 'CollectionPage'),
+              ('about.html', '/about.html', 'AboutPage'),
+              ('contact.html', '/contact.html', 'ContactPage')
+          ]
+
+          organization = {
+              '@context': 'https://schema.org',
+              '@graph': [
+                  {
+                      '@type': 'Organization',
+                      '@id': base + '/#organization',
+                      'name': '志远同创',
+                      'alternateName': ['ZYPA RF POWER', '志远同创 ZYPA'],
+                      'url': base + '/',
+                      'email': 'lwhwdmdc@gmail.com',
+                      'telephone': '+86-158-5859-9469',
+                      'description': '志远同创专注于 80 MHz–40 GHz 宽带射频功率放大、低噪声接收与系统级集成，提供功放模块、功放机箱、功放机柜和低噪放模块。',
+                      'contactPoint': [{
+                          '@type': 'ContactPoint',
+                          'contactType': 'sales',
+                          'telephone': '+86-158-5859-9469',
+                          'email': 'lwhwdmdc@gmail.com',
+                          'availableLanguage': ['zh-CN', 'en']
+                      }],
+                      'knowsAbout': ['射频功率放大器', '宽带功放模块', '功放机箱', '功放机柜', '低噪声放大器', '射频系统集成']
+                  },
+                  {
+                      '@type': 'WebSite',
+                      '@id': base + '/#website',
+                      'url': base + '/',
+                      'name': '志远同创 ZYPA RF POWER',
+                      'publisher': {'@id': base + '/#organization'},
+                      'inLanguage': ['zh-CN', 'en']
+                  }
+              ]
+          }
+
+          image_url = base + '/%E5%9B%BE%E7%89%87/b516e47ea2926ebc319c0dadf28244f2.png'
+
+          for filename, path, page_type in pages:
+              file = Path(filename)
+              html = file.read_text(encoding='utf-8')
+              canonical = base + path
+              description_match = re.search(r'<meta name="description" content="([^"]*)"\s*/>', html)
+              title_match = re.search(r'<title>([^<]*)</title>', html)
+              if not description_match or not title_match:
+                  raise SystemExit('Missing title or description in ' + filename)
+              description = description_match.group(1)
+              title = title_match.group(1)
+
+              if 'rel="canonical"' not in html:
+                  tags = [
+                      '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />',
+                      '<link rel="canonical" href="' + canonical + '" />',
+                      '<meta property="og:type" content="website" />',
+                      '<meta property="og:site_name" content="志远同创 ZYPA RF POWER" />',
+                      '<meta property="og:title" content="' + title + '" />',
+                      '<meta property="og:description" content="' + description + '" />',
+                      '<meta property="og:url" content="' + canonical + '" />',
+                      '<meta property="og:image" content="' + image_url + '" />',
+                      '<meta name="twitter:card" content="summary_large_image" />',
+                      '<meta name="twitter:title" content="' + title + '" />',
+                      '<meta name="twitter:description" content="' + description + '" />'
+                  ]
+                  html = html.replace(
+                      description_match.group(0),
+                      description_match.group(0) + '\n  ' + '\n  '.join(tags),
+                      1
+                  )
+
+              if 'application/ld+json' not in html:
+                  page_data = {
+                      '@type': page_type,
+                      '@id': canonical + '#webpage',
+                      'url': canonical,
+                      'name': title,
+                      'isPartOf': {'@id': base + '/#website'},
+                      'about': {'@id': base + '/#organization'},
+                      'inLanguage': ['zh-CN', 'en']
+                  }
+                  payload = dict(organization)
+                  payload['@graph'] = organization['@graph'] + [page_data]
+                  structured = json.dumps(payload, ensure_ascii=False, indent=2)
+                  html = html.replace(
+                      '</head>',
+                      '  <script type="application/ld+json">\n' + structured + '\n  </script>\n</head>',
+                      1
+                  )
+
+              file.write_text(html, encoding='utf-8')
+
+          Path('robots.txt').write_text(
+              'User-agent: *\nAllow: /\n\nSitemap: ' + base + '/sitemap.xml\n',
+              encoding='utf-8'
+          )
+
+          sitemap_items = []
+          for filename, path, page_type in pages:
+              priority = '1.0' if path == '/' else '0.8'
+              sitemap_items.append(
+                  '  <url><loc>' + base + path + '</loc><lastmod>2026-11-19</lastmod><changefreq>weekly</changefreq><priority>' + priority + '</priority></url>'
+              )
+          sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(sitemap_items) + '\n</urlset>\n'
+          Path('sitemap.xml').write_text(sitemap, encoding='utf-8')
+          PY
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html products.html about.html contact.html robots.txt sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add sitemap and search engine metadata"
+            git push origin HEAD:main
+          fi
